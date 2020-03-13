@@ -25,13 +25,15 @@ app.get("/api/hello", function (req, res) {
 });
 
 app.get("/api/timestamp/:date_string?", (req,res)=>{
-  console.log(req.params.date_string);
+  
   let result;
   if(req.params.date_string) {
-    
+    const dateArray = req.params.date_string.split('-').map(string => parseInt(string));
+    result = new Date(...dateArray);
   } else {
     result = new Date();
   }
+  let unix = result.getT
   
   res.json({unix: result})
 })
