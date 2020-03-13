@@ -27,11 +27,11 @@ app.get("/api/hello", function (req, res) {
 app.get("/api/timestamp/:date_string?", (req,res)=>{
   let result;
   if(req.params.date_string) {
-    const dateArray = req.params.date_string.split('-').map((string, index) => index === 1 ? (parseInt(string)-1) : parseInt(string));
-    if(dateArray.length !== 3 && typeof dateArray ){
-      res.json({"error" : "Invalid Date" })
-      return
-    } 
+    const dateArray =  req.params.date_string.includes('-') ? req.params.date_string.split('-').map((string, index) => index === 1 ? (parseInt(string)-1) : parseInt(string)) :;
+    // if(dateArray.length !== 3 && typeof dateArray === "number"){
+    //   res.json({"error" : "Invalid Date" })
+    //   return
+    // } 
     result = new Date(...dateArray);
   } else {
     result = new Date();
