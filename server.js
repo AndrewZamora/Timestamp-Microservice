@@ -26,10 +26,10 @@ app.get("/api/hello", function (req, res) {
 
 app.get("/api/timestamp/:date_string?", (req,res)=>{
   let result;
-  if(req.params.date_string) {
-    const dateStr = req.params.date_string;
-    const formattedReq =  dateStr.includes('-') ? dateStr.split('-').map((string, index) => index === 1 ? (parseInt(string)-1) : parseInt(string)) : parseInt(dateStr);
-    result = Array.isArray(formattedReq) ? new Date(...formattedReq): new Date(formattedReq);
+  const dateStr = req.params.date_string;
+  if(dateStr) {
+    const dateArray = dateStr.split('-').map((string, index) => index === 1 ? (parseInt(string)-1) : parseInt(string));
+    result = new Date(...dateArray);
   } else {
     result = new Date();
   }
