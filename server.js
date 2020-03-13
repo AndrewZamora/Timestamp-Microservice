@@ -29,7 +29,11 @@ app.get("/api/timestamp/:date_string?", (req,res)=>{
   const dateStr = req.params.date_string;
   if(dateStr) {
     const dateArray = dateStr.split('-').map((string, index) => index === 1 ? (parseInt(string)-1) : parseInt(string));
-    result = new Date(...dateArray);
+    result = new Date(parseInt(dateStr));
+    // if(dateArray.length !== 3 ) {
+    //   res.json({"unix": null, "utc" : "Invalid Date" })
+    //   return
+    // }
   } else {
     result = new Date();
   }
