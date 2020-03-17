@@ -39,7 +39,7 @@ app.get("/api/timestamp/:date_string?", (req,res)=>{
   if(unix) {
     res.json({ unix, utc})
   } else {
-     res.json({"error":"Invalid Date"})
+    res.json({"error":"Invalid Date"})
   }
   
 })
